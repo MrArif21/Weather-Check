@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Weather.css";
 
 function Weather() {
   // API configuration
@@ -18,12 +19,12 @@ function Weather() {
         .then((res) => res.json())
         .then((result) => {
           setWeather(result);
-          setQuery; // This line seems to be missing the updated query value, it should be like setQuery(result.name) for example
+          setQuery(result.name);
         });
     }
   };
 
-  // Function to build a date string
+  // Function to build a dclassName="weather-box"ate string
   const dateBuilder = (d) => {
     let months = [
       "January",
@@ -61,7 +62,7 @@ function Weather() {
   // ... Rest of the component
 
   return (
-    <div>
+    <div className={(typeof weather.main != 'undefined') ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app' }>
       <main>
         <div className="Search-bor">
           <input
@@ -78,9 +79,10 @@ function Weather() {
             <div className="loaction">
               {weather.name},{weather.sys.country}
             </div>
-            <div className="date">{dateBuilder(new data())}</div>
+            <div className="date">{dateBuilder(new Date())}</div>
             <div className="weather-box">
               <div className="temp">{Math.round(weather.main.temp)}°c</div>
+              <div className="weather">{weather.weather[0].main}</div>
             </div>
           </div>
         ) : (
