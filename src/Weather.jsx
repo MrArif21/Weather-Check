@@ -64,7 +64,7 @@ function Weather() {
   return (
     <div className={(typeof weather.main != 'undefined') ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app' }>
       <main>
-        <div className="Search-bor">
+        <div className="search-box">
           <input
             type="text"
             className="search-bar"
@@ -76,7 +76,7 @@ function Weather() {
         </div>
         {typeof weather.main != "undefined" ? (
           <div className="location-box">
-            <div className="loaction">
+            <div className="location">
               {weather.name},{weather.sys.country}
             </div>
             <div className="date">{dateBuilder(new Date())}</div>
